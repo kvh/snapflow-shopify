@@ -1,0 +1,155 @@
+name: ShopifyOrder
+version: 1
+description: Shopify order
+unique on:
+  - id
+on conflict: ReplaceWithNewer
+fields:
+  id:
+    type: BigInteger
+    validators:
+      - NotNull
+  admin_graphql_api_id:
+    type: Unicode
+  app_id:
+    type: BigInteger
+  billing_address:
+    type: JSON
+  browser_ip:
+    type: Unicode
+  buyer_accepts_marketing:
+    type: Boolean
+  cancel_reason:
+    type: Unicode
+  cancelled_at:
+    type: DateTime
+  cart_token:
+    type: Unicode
+  checkout_id:
+    type: Unicode
+  checkout_token:
+    type: Unicode
+  client_details:
+    type: JSON
+  closed_at:
+    type: DateTime
+  confirmed:
+    type: Boolean
+  contact_email:
+    type: Unicode
+  created_at:
+    type: DateTime
+  currency:
+    type: Unicode
+  customer:
+    type: JSON
+  customer_locale:
+    type: Unicode
+  device_id:
+    type: Unicode
+  discount_applications:
+    type: JSON
+  discount_codes:
+    type: JSON
+  email:
+    type: Unicode
+  financial_status:
+    type: Unicode
+  fulfillment_status:
+    type: Unicode
+  fulfillments:
+    type: JSON
+  gateway:
+    type: Unicode
+  landing_site:
+    type: Unicode
+  landing_site_ref:
+    type: Unicode
+  line_items:
+    type: JSON
+  location_id:
+    type: Unicode
+  name:
+    type: Unicode
+  note:
+    type: Unicode
+  note_attributes:
+    type: JSON
+  number:
+    type: BigInteger
+  order_number:
+    type: BigInteger
+  order_status_url:
+    type: Unicode
+  payment_details:
+    type: JSON
+  payment_gateway_names:
+    type: JSON
+  phone:
+    type: Unicode
+  point_of_sale_user_id:
+    type: Unicode
+  presentment_currency:
+    type: Unicode
+  processed_at:
+    type: DateTime
+  processing_method:
+    type: Unicode
+  reference:
+    type: Unicode
+  referring_site:
+    type: Unicode
+  refunds:
+    type: JSON
+  shipping_address:
+    type: JSON
+  shipping_lines:
+    type: JSON
+  source_identifier:
+    type: Unicode
+  source_name:
+    type: Unicode
+  source_url:
+    type: Unicode
+  subtotal_price:
+    type: Numeric(9,2)
+  subtotal_price_set:
+    type: JSON
+  tags:
+    type: Unicode
+  tax_lines:
+    type: JSON
+  taxes_included:
+    type: Boolean
+  test:
+    type: Boolean
+  token:
+    type: Unicode
+  total_discounts:
+    type: Numeric(9,2)
+  total_discounts_set:
+    type: JSON
+  total_line_items_price:
+    type: Numeric(9,2)
+  total_line_items_price_set:
+    type: JSON
+  total_price:
+    type: Numeric(9,2)
+  total_price_set:
+    type: JSON
+  total_price_usd:
+    type: Numeric(9,2)
+  total_shipping_price_set:
+    type: JSON
+  total_tax:
+    type: Numeric(9,2)
+  total_tax_set:
+    type: JSON
+  total_tip_received:
+    type: Numeric(9,2)
+  total_weight:
+    type: BigInteger
+  updated_at:
+    type: DateTime
+  user_id:
+    type: BigInteger
