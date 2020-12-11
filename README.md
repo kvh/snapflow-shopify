@@ -8,15 +8,15 @@ Shopify module for the [snapflow](https://github.com/kvh/snapflow) framework.
 
 ```python
 from snapflow import Graph, produce
-import snapflow_fred
+import snapflow_shopify as shopify
 
 g = graph()
 
 # Initial graph
-gdp = g.create_node(
-    "fred.extract_observations",
-    config={"api_key": "xxxxx", "series_id": "gdp"},
+orders = g.create_node(
+    "shopify.extract_orders",
+    config={"shopify_admin_url": "xxx:xxx@your-shop.myshopify.com"},
 )
-output = produce(gdp, env=env, modules=[fred])
+output = produce(orders, env=env, modules=[shopify])
 print(output.as_records_list())
 ```
