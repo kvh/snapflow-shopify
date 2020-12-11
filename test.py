@@ -1,17 +1,17 @@
 from pprint import pprint
 
-from dags import Environment
-from dags.core.graph import Graph
-from dags.testing.utils import get_tmp_sqlite_db_url
+from snapflow import Environment
+from snapflow.core.graph import Graph
+from snapflow.testing.utils import get_tmp_sqlite_db_url
 
 
 def test_shopify(api_key: str):
-    import dags_shopify
+    import snapflow_shopify
 
     env = Environment(metadata_storage="sqlite://")
     g = Graph(env)
     s = env.add_storage(get_tmp_sqlite_db_url())
-    env.add_module(dags_shopify)
+    env.add_module(snapflow_shopify)
     # Initial graph
     g.add_node(
         "shopify_orders",

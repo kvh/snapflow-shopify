@@ -2,13 +2,15 @@ from __future__ import annotations
 
 import base64
 from dataclasses import dataclass
-from typing import Dict, Tuple
+from typing import Dict, TYPE_CHECKING, Tuple
 
-from dags import DataSet, DataBlock
-from dags.core.data_formats import RecordsList, RecordsListGenerator
-from dags.core.extraction.connection import JsonHttpApiConnection
-from dags.core.pipe import pipe
-from dags.core.runnable import PipeContext
+from requests.auth import HTTPBasicAuth
+from snapflow import pipe, PipeContext
+from snapflow.core.data_formats import RecordsList, RecordsListGenerator
+from snapflow.core.extraction.connection import JsonHttpApiConnection
+
+if TYPE_CHECKING:
+    from snapflow_shopify import ShopifyOrder
 
 
 DEFAULT_MIN_DATE = "2006-01-01 00:00:00"  # Before Shopify was founded
@@ -21,12 +23,11 @@ def split_admin_url(admin_url: str) -> Tuple[str, str, str]:
     return (url, auth, shop_name)
 
 
-def url_and_headers_from_admin_url(admin_url: str) -> Tuple[str, Dict]:
+def url_and_auth_from_admin_url(admin_url: str) -> Tuple[str, Dict]:
     url, auth, shop_name = split_admin_url(admin_url)
-    token = base64.b64encode(auth.encode()).decode("ascii")
-    headers = {"Authorization": f"Basic {token}"}
+    auth = HTTPBasicAuth(*auth.split(":"))
     shop_url = f"https://{shop_name}.myshopify.com/admin/api/{API_VERSION}"
-    return shop_url, headers
+    return shop_url, auth
 
 
 def get_next_page_link(resp_headers):
@@ -58,12 +59,12 @@ class ExtractShopifyOrdersState:
     config_class=ExtractShopifyOrdersConfig,
     state_class=ExtractShopifyOrdersState,
 )
-def extract_shopify_orders(
+def extract_orders(
     ctx: PipeContext,
-) -> RecordsListGenerator[shopify.ShopifyOrder]:
+) -> RecordsListGenerator[ShopifyOrder]:
     admin_url = ctx.get_config_value("shopify_admin_url")
     _, _, shop_name = split_admin_url(admin_url)
-    url, headers = url_and_headers_from_admin_url(admin_url)
+    url, auth = url_and_auth_from_admin_url(admin_url)
     endpoint_url = url + "/orders.json"
     latest_updated_at = ctx.get_state_value("latest_updated_at") or DEFAULT_MIN_DATE
 
@@ -75,7 +76,7 @@ def extract_shopify_orders(
     }
     conn = JsonHttpApiConnection()
     while True:
-        resp = conn.get(endpoint_url, params, headers=headers)
+        resp = conn.get(endpoint_url, params, auth=auth)
         json_resp = resp.json()
         assert isinstance(json_resp, dict)
         records = json_resp["orders"]
