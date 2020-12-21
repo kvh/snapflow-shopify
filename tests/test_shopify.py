@@ -25,7 +25,7 @@ def test_shopify():
         config={"shopify_admin_url": api_key},
     )
     output = produce(orders, env=env, modules=[shopify])
-    records = output.as_records_list()
+    records = output.as_records()
     assert len(records) > 0
 
 

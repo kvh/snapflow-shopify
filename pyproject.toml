@@ -3,11 +3,11 @@ authors = ["Ken Van Haren <kenvanharen@gmail.com>"]
 description = "Shopify module for snapflow"
 license = "BSD-3-Clause"
 name = "snapflow-shopify"
-version = "0.1.0"
+version = "0.1.1"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-snapflow = "^0.1.5"
+snapflow = "^0.2.0"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"

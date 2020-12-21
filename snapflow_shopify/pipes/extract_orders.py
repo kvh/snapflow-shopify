@@ -6,7 +6,7 @@ from typing import Dict, TYPE_CHECKING, Tuple
 
 from requests.auth import HTTPBasicAuth
 from snapflow import pipe, PipeContext
-from snapflow.core.data_formats import RecordsList, RecordsListGenerator
+from snapflow.storage.data_formats import Records, RecordsIterator
 from snapflow.core.extraction.connection import JsonHttpApiConnection
 
 if TYPE_CHECKING:
@@ -61,7 +61,7 @@ class ExtractShopifyOrdersState:
 )
 def extract_orders(
     ctx: PipeContext,
-) -> RecordsListGenerator[ShopifyOrder]:
+) -> RecordsIterator[ShopifyOrder]:
     admin_url = ctx.get_config_value("shopify_admin_url")
     _, _, shop_name = split_admin_url(admin_url)
     url, auth = url_and_auth_from_admin_url(admin_url)
@@ -75,7 +75,7 @@ def extract_orders(
         "limit": 250,
     }
     conn = JsonHttpApiConnection()
-    while True:
+    while ctx.should_continue():
         resp = conn.get(endpoint_url, params, auth=auth)
         json_resp = resp.json()
         assert isinstance(json_resp, dict)
