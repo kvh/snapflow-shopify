@@ -1,9 +1,9 @@
 name: ShopifyOrder
 version: 1
 description: Shopify order
-unique on:
+unique_on:
   - id
-on conflict: ReplaceWithNewer
+immutable: false
 fields:
   id:
     type: BigInteger
