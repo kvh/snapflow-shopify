@@ -22,7 +22,7 @@ def test_shopify():
     # Initial graph
     orders = g.create_node(
         "shopify.extract_orders",
-        config={"shopify_admin_url": api_key},
+        params={"shopify_admin_url": api_key},
     )
     output = produce(orders, env=env, modules=[shopify])
     records = output.as_records()

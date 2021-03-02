@@ -15,7 +15,7 @@ g = graph()
 # Initial graph
 orders = g.create_node(
     "shopify.extract_orders",
-    config={"shopify_admin_url": "xxx:xxx@your-shop.myshopify.com"},
+    params={"shopify_admin_url": "xxx:xxx@your-shop.myshopify.com"},
 )
 output = produce(orders, env=env, modules=[shopify])
 print(output.as_records())
