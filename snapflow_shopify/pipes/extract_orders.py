@@ -45,17 +45,17 @@ def get_next_page_link(resp_headers):
 
 
 @dataclass
-class ExtractShopifyOrdersState:
+class ImportShopifyOrdersState:
     latest_updated_at: str
 
 
 @Snap(
-    "extract_orders",
+    "import_orders",
     module="shopify",
-    state_class=ExtractShopifyOrdersState,
+    state_class=ImportShopifyOrdersState,
 )
 @Param("shopify_admin_url", "str")
-def extract_orders(
+def import_orders(
     ctx: SnapContext,
 ) -> RecordsIterator[ShopifyOrder]:
     admin_url = ctx.get_param("shopify_admin_url")
