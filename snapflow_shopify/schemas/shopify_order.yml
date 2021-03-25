@@ -10,25 +10,25 @@ fields:
     validators:
       - NotNull
   admin_graphql_api_id:
-    type: Unicode
+    type: Text
   app_id:
     type: BigInteger
   billing_address:
     type: JSON
   browser_ip:
-    type: Unicode
+    type: Text
   buyer_accepts_marketing:
     type: Boolean
   cancel_reason:
-    type: Unicode
+    type: Text
   cancelled_at:
     type: DateTime
   cart_token:
-    type: Unicode
+    type: Text
   checkout_id:
-    type: Unicode
+    type: Text
   checkout_token:
-    type: Unicode
+    type: Text
   client_details:
     type: JSON
   closed_at:
@@ -36,43 +36,43 @@ fields:
   confirmed:
     type: Boolean
   contact_email:
-    type: Unicode
+    type: Text
   created_at:
     type: DateTime
   currency:
-    type: Unicode
+    type: Text
   customer:
     type: JSON
   customer_locale:
-    type: Unicode
+    type: Text
   device_id:
-    type: Unicode
+    type: Text
   discount_applications:
     type: JSON
   discount_codes:
     type: JSON
   email:
-    type: Unicode
+    type: Text
   financial_status:
-    type: Unicode
+    type: Text
   fulfillment_status:
-    type: Unicode
+    type: Text
   fulfillments:
     type: JSON
   gateway:
-    type: Unicode
+    type: Text
   landing_site:
-    type: Unicode
+    type: Text(1024)
   landing_site_ref:
-    type: Unicode
+    type: Text
   line_items:
     type: JSON
   location_id:
-    type: Unicode
+    type: Text
   name:
-    type: Unicode
+    type: Text
   note:
-    type: Unicode
+    type: Text
   note_attributes:
     type: JSON
   number:
@@ -80,25 +80,25 @@ fields:
   order_number:
     type: BigInteger
   order_status_url:
-    type: Unicode
+    type: Text
   payment_details:
     type: JSON
   payment_gateway_names:
     type: JSON
   phone:
-    type: Unicode
+    type: Text
   point_of_sale_user_id:
-    type: Unicode
+    type: Text
   presentment_currency:
-    type: Unicode
+    type: Text
   processed_at:
     type: DateTime
   processing_method:
-    type: Unicode
+    type: Text
   reference:
-    type: Unicode
+    type: Text
   referring_site:
-    type: Unicode
+    type: Text
   refunds:
     type: JSON
   shipping_address:
@@ -106,17 +106,17 @@ fields:
   shipping_lines:
     type: JSON
   source_identifier:
-    type: Unicode
+    type: Text
   source_name:
-    type: Unicode
+    type: Text
   source_url:
-    type: Unicode
+    type: Text
   subtotal_price:
     type: Numeric(9,2)
   subtotal_price_set:
     type: JSON
   tags:
-    type: Unicode
+    type: Text
   tax_lines:
     type: JSON
   taxes_included:
@@ -124,7 +124,7 @@ fields:
   test:
     type: Boolean
   token:
-    type: Unicode
+    type: Text
   total_discounts:
     type: Numeric(9,2)
   total_discounts_set:
