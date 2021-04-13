@@ -6,150 +6,150 @@ unique_on:
 immutable: false
 fields:
   id:
-    type: BigInteger
+    type: Integer
     validators:
       - NotNull
   admin_graphql_api_id:
-    type: Unicode
+    type: Text
   app_id:
-    type: BigInteger
+    type: Integer
   billing_address:
-    type: JSON
+    type: Json
   browser_ip:
-    type: Unicode
+    type: Text
   buyer_accepts_marketing:
     type: Boolean
   cancel_reason:
-    type: Unicode
+    type: Text
   cancelled_at:
     type: DateTime
   cart_token:
-    type: Unicode
+    type: Text
   checkout_id:
-    type: Unicode
+    type: Text
   checkout_token:
-    type: Unicode
+    type: Text
   client_details:
-    type: JSON
+    type: Json
   closed_at:
     type: DateTime
   confirmed:
     type: Boolean
   contact_email:
-    type: Unicode
+    type: Text
   created_at:
     type: DateTime
   currency:
-    type: Unicode
+    type: Text
   customer:
-    type: JSON
+    type: Json
   customer_locale:
-    type: Unicode
+    type: Text
   device_id:
-    type: Unicode
+    type: Text
   discount_applications:
-    type: JSON
+    type: Json
   discount_codes:
-    type: JSON
+    type: Json
   email:
-    type: Unicode
+    type: Text
   financial_status:
-    type: Unicode
+    type: Text
   fulfillment_status:
-    type: Unicode
+    type: Text
   fulfillments:
-    type: JSON
+    type: Json
   gateway:
-    type: Unicode
+    type: Text
   landing_site:
-    type: Unicode
+    type: Text
   landing_site_ref:
-    type: Unicode
+    type: Text
   line_items:
-    type: JSON
+    type: Json
   location_id:
-    type: Unicode
+    type: Text
   name:
-    type: Unicode
+    type: Text
   note:
-    type: Unicode
+    type: Text
   note_attributes:
-    type: JSON
+    type: Json
   number:
-    type: BigInteger
+    type: Integer
   order_number:
-    type: BigInteger
+    type: Integer
   order_status_url:
-    type: Unicode
+    type: Text
   payment_details:
-    type: JSON
+    type: Json
   payment_gateway_names:
-    type: JSON
+    type: Json
   phone:
-    type: Unicode
+    type: Text
   point_of_sale_user_id:
-    type: Unicode
+    type: Text
   presentment_currency:
-    type: Unicode
+    type: Text
   processed_at:
     type: DateTime
   processing_method:
-    type: Unicode
+    type: Text
   reference:
-    type: Unicode
+    type: Text
   referring_site:
-    type: Unicode
+    type: Text
   refunds:
-    type: JSON
+    type: Json
   shipping_address:
-    type: JSON
+    type: Json
   shipping_lines:
-    type: JSON
+    type: Json
   source_identifier:
-    type: Unicode
+    type: Text
   source_name:
-    type: Unicode
+    type: Text
   source_url:
-    type: Unicode
+    type: Text
   subtotal_price:
-    type: Numeric(9,2)
+    type: Decimal(9,2)
   subtotal_price_set:
-    type: JSON
+    type: Json
   tags:
-    type: Unicode
+    type: Text
   tax_lines:
-    type: JSON
+    type: Json
   taxes_included:
     type: Boolean
   test:
     type: Boolean
   token:
-    type: Unicode
+    type: Text
   total_discounts:
-    type: Numeric(9,2)
+    type: Decimal(9,2)
   total_discounts_set:
-    type: JSON
+    type: Json
   total_line_items_price:
-    type: Numeric(9,2)
+    type: Decimal(9,2)
   total_line_items_price_set:
-    type: JSON
+    type: Json
   total_price:
-    type: Numeric(9,2)
+    type: Decimal(9,2)
   total_price_set:
-    type: JSON
+    type: Json
   total_price_usd:
-    type: Numeric(9,2)
+    type: Decimal(9,2)
   total_shipping_price_set:
-    type: JSON
+    type: Json
   total_tax:
-    type: Numeric(9,2)
+    type: Decimal(9,2)
   total_tax_set:
-    type: JSON
+    type: Json
   total_tip_received:
-    type: Numeric(9,2)
+    type: Decimal(9,2)
   total_weight:
-    type: BigInteger
+    type: Integer
   updated_at:
     type: DateTime
   user_id:
-    type: BigInteger
+    type: Integer

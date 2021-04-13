@@ -17,6 +17,6 @@ orders = g.create_node(
     "shopify.import_orders",
     params={"shopify_admin_url": "xxx:xxx@your-shop.myshopify.com"},
 )
-output = produce(orders, env=env, modules=[shopify])
-print(output.as_records())
+blocks = produce(orders, env=env, modules=[shopify])
+print(blocks[0].as_records())
 ```

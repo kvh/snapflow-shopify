@@ -2,11 +2,11 @@ from __future__ import annotations
 
 import base64
 from dataclasses import dataclass
-from typing import Dict, TYPE_CHECKING, Tuple
+from typing import TYPE_CHECKING, Dict, Iterator, Tuple
 
+from dcp.data_format import Records
 from requests.auth import HTTPBasicAuth
-from snapflow import Snap, SnapContext, Param
-from snapflow.storage.data_formats import Records, RecordsIterator
+from snapflow import Param, Snap, SnapContext
 from snapflow.core.extraction.connection import JsonHttpApiConnection
 
 if TYPE_CHECKING:
@@ -43,7 +43,6 @@ def get_next_page_link(resp_headers):
     return result.get("next")
 
 
-
 @dataclass
 class ImportShopifyOrdersState:
     latest_updated_at: str
@@ -53,12 +52,12 @@ class ImportShopifyOrdersState:
     "import_orders",
     module="shopify",
     state_class=ImportShopifyOrdersState,
-    display_name="Import Shopify orders"
+    display_name="Import Shopify orders",
 )
 @Param("shopify_admin_url", "str")
 def import_orders(
     ctx: SnapContext,
-) -> RecordsIterator[ShopifyOrder]:
+) -> Iterator[Records[ShopifyOrder]]:
     admin_url = ctx.get_param("shopify_admin_url")
     _, _, shop_name = split_admin_url(admin_url)
     url, auth = url_and_auth_from_admin_url(admin_url)

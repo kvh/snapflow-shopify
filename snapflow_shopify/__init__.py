@@ -1,8 +1,8 @@
 from typing import TypeVar
+
 from snapflow import SnapflowModule
 
 from .snaps.import_orders import import_orders
-
 
 ShopifyOrder = TypeVar("ShopifyOrder")
 
