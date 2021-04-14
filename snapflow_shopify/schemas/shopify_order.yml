@@ -62,7 +62,7 @@ fields:
   gateway:
     type: Text
   landing_site:
-    type: Text
+    type: Text(1024)
   landing_site_ref:
     type: Text
   line_items:
