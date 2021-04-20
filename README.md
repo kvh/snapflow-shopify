@@ -8,7 +8,7 @@ Shopify module for the [snapflow](https://github.com/kvh/snapflow) framework.
 
 ```python
 from snapflow import Graph, produce
-import snapflow_shopify as shopify
+from snapflow_shopify import module as shopify
 
 g = graph()
 

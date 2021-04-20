@@ -2,6 +2,10 @@ import os
 
 from snapflow import Environment, graph, produce
 
+from loguru import logger
+
+logger.enable("snapflow")
+
 
 def ensure_api_key() -> str:
     api_key = os.environ.get("SHOPIFY_ADMIN_URL")
@@ -12,7 +16,7 @@ def ensure_api_key() -> str:
 
 
 def test_shopify():
-    import snapflow_shopify as shopify
+    from snapflow_shopify import module as shopify
 
     api_key = ensure_api_key()
     env = Environment(metadata_storage="sqlite://")
@@ -22,7 +26,7 @@ def test_shopify():
     # Initial graph
     orders = g.create_node(
         "shopify.import_orders",
-        params={"shopify_admin_url": api_key},
+        params={"admin_url": api_key},
     )
     blocks = produce(orders, env=env, modules=[shopify])
     records = blocks[0].as_records()
