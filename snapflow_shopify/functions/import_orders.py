@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Dict, Iterator, Tuple
 
 from dcp.data_format import Records
 from requests.auth import HTTPBasicAuth
-from snapflow import Param, Function, FunctionContext
+from snapflow import datafunction, Context
 from snapflow.core.extraction.connection import JsonHttpApiConnection
 
 if TYPE_CHECKING:
@@ -48,16 +48,13 @@ class ImportShopifyOrdersState:
     latest_updated_at: str
 
 
-@Function(
+@datafunction(
     "import_orders",
     namespace="shopify",
     state_class=ImportShopifyOrdersState,
     display_name="Import Shopify orders",
 )
-def import_orders(
-    ctx: FunctionContext,
-    admin_url: str,
-) -> Iterator[Records[ShopifyOrder]]:
+def import_orders(ctx: Context, admin_url: str,) -> Iterator[Records[ShopifyOrder]]:
     _, _, shop_name = split_admin_url(admin_url)
     url, auth = url_and_auth_from_admin_url(admin_url)
     endpoint_url = url + "/orders.json"
