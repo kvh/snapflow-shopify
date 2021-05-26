@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import base64
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Dict, Iterator, Tuple
 
@@ -18,6 +17,10 @@ API_VERSION = "2020-01"
 
 
 def split_admin_url(admin_url: str) -> Tuple[str, str, str]:
+    if admin_url.startswith("https://"):
+        admin_url = admin_url[8:]
+    paths = admin_url.split("/")
+    admin_url = paths[0]
     auth, url = admin_url.split("@")
     shop_name = url.split(".")[0]
     return (url, auth, shop_name)
@@ -83,4 +86,5 @@ def import_orders(ctx: Context, admin_url: str,) -> Iterator[Records[ShopifyOrde
         if not next_page:
             # No more pages
             break
-        params = {"page_info": next_page, "limit": 250}
+        endpoint_url = next_page
+        params = {}
