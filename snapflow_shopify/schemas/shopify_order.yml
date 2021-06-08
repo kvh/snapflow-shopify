@@ -26,7 +26,7 @@ fields:
   cart_token:
     type: Text
   checkout_id:
-    type: Text
+    type: Integer
   checkout_token:
     type: Text
   client_details:
